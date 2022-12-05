@@ -1,0 +1,23 @@
+\begin{answer}
+  The reason is dataset $B$ is linearly separable while $A$ is not. Logistic
+  regression without regularization (as implemented in the code) will not
+  converge to a single parameter if the data is perfectly separable (similar to
+  $X^TX$ being singular in linear regression). Since data is perfectly
+  separable, any $\theta$ that separates the data can be increased in magnitude
+  to further decrease the loss, without change in the decision boundary.
+
+  If left to run, $\|\theta\|_2$ will slowly, but surely increase forever (towards infinity).
+
+% TODO: See 01-stability dir for plots.
+%  \begin{figure*}[htbp]
+%    \centering
+%    \includegraphics[width=0.4\textwidth]{01-stability/PS2Q1data_a.pdf}
+%    \caption{Plot for dataset a.}
+%  \end{figure*}
+%
+%  \begin{figure*}[htbp]
+%    \centering
+%    \includegraphics[width=0.4\textwidth]{01-stability/PS2Q1data_b.pdf}
+%    \caption{Plot for dataset b}
+%  \end{figure*}
+\end{answer}

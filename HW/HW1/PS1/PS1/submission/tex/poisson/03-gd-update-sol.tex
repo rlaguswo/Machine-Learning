@@ -1,0 +1,26 @@
+\begin{answer}
+	\begin{equation*}
+	    \eta = \theta^{T}x = log \lambda \Rightarrow \lambda = e^{\theta^{T}x}
+	\end{equation*}
+	So,
+	\begin{equation*}
+	    p(y^{i}|x^{i};\theta) = \frac{e^{-e^{\theta^{T}x}}e^{\theta^{T}x*y}}{y!}
+	\end{equation*}
+	Thus, log-likelihood is...
+	\begin{equation*}
+	    l(\theta) =log(\frac{e^{-e^{\theta^{T}x}}e^{\theta^{T}x*y}}{y!}) = \theta^{T}x*y-e^{\theta^{T}x} - log(y!)
+	\end{equation*}
+	
+	\begin{equation*}
+	    \nabla_\theta l(\theta) = (y - e^{\theta^{T}x})x_j
+	\end{equation*}
+	
+	Therefore, the stochastic gradient update rule is...
+	\begin{equation*}
+	    \theta := \theta + \alpha (y - e^{\theta^{T}x})x_j
+	\end{equation*}
+	or
+	\begin{equation*}
+	    \theta^{i+1} \leftarrow  \theta^{i} + \alpha (y - e^{\theta^{T}x})x_j
+	\end{equation*}
+\end{answer}

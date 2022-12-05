@@ -1,0 +1,32 @@
+\begin{answer}
+\def\xsi{x^{(i)}}
+We start with the PDF of the Laplace distribution, denoted  $g'(s) = \frac{1}{2}\exp(-|s|)$. Applying this into the likelihood given a single example $\xsi$, we get:
+
+\begin{align*}
+    \ell(W) &= \log|W| + \sum_{j=1}^\di \log \exp\left(-|w_j^T\xsi|)\right) \\
+    &= \log|W| -\sum_{j=1}^\di |w_j^T\xsi| \\
+    \Rightarrow \nabla_W\ell(W) &= W^{-T} - \begin{bmatrix} \nabla_{w_1}|w_1^T\xsi| \\ \nabla_{w_2}|w_2^T\xsi| \\
+    \ldots \\
+    \nabla_{w_{\di}}|w_{\di}^T\xsi|
+    \end{bmatrix} \\
+    &=  W^{-T} - \begin{bmatrix} \text{sign}(w_1^T\xsi)x^{(i)T} \\
+    \text{sign}(w_2^T\xsi)x^{(i)T} \\
+    \ldots\\
+    \text{sign}(w_{\di}^T\xsi)x^{(i)T}
+    \end{bmatrix} \\
+    &= W^{-T} - \begin{bmatrix} \text{sign}(w_1^T\xsi) \\
+    \text{sign}(w_2^T\xsi) \\
+    \ldots\\
+    \text{sign}(w_{\di}^T\xsi)
+    \end{bmatrix}x^{(i)T}
+\end{align*}
+
+Resulting in the update rule:
+\begin{align*}
+    W := W + \alpha \left(W^{-T} - \begin{bmatrix} \text{sign}(w_1^T\xsi) \\
+    \text{sign}(w_2^T\xsi) \\
+    \ldots\\
+    \text{sign}(w_{\di}^T\xsi)
+    \end{bmatrix}x^{(i)T} \right)
+\end{align*}
+\end{answer}

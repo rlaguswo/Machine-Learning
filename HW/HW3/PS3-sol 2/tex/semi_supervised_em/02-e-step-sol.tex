@@ -1,0 +1,12 @@
+\begin{answer}
+The latent variables are all the $\zsi, i \in \{1,\ldots,\nexp\}$. The E-step remains unchanged from the lecture notes:
+\begin{align*}
+w^{(i)}_j= Q_i(\zsi=j)
+&= \frac{ p(\xsi|\zsi=j;\mu,\Sigma)p(\zsi=j) }
+        { \sum_{l=1}^k p(\xsi|\zsi=l;\mu,\Sigma)p(\zsi=l) } \quad \text{(from notes)} \\
+&= \frac{ \frac{1}{\sqrt{(2\pi)^\di|\Sigma_j|}}\exp\left(-\frac{1}{2}(\xsi-\mu_j)^T\Sigma_j^{-1}(\xsi-\mu_j) \right)\phi_j }
+        { \sum_{l=1}^k \frac{1}{\sqrt{(2\pi)^\di|\Sigma_l|}}\exp\left(-\frac{1}{2}(\xsi-\mu_l)^T\Sigma_l^{-1}(\xsi-\mu_l) \right)\phi_l } \\
+&= \frac{ |\Sigma_j|^{-1/2}\exp\left(-\frac{1}{2}(\xsi-\mu_j)^T\Sigma_j^{-1}(\xsi-\mu_j) \right)\phi_j }
+        { \sum_{l=1}^k |\Sigma_l|^{-1/2}\exp\left(-\frac{1}{2}(\xsi-\mu_l)^T\Sigma_l^{-1}(\xsi-\mu_l) \right)\phi_l }.
+\end{align*}
+\end{answer}

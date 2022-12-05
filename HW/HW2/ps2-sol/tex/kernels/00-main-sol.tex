@@ -1,0 +1,67 @@
+\begin{answer}
+  All 8 cases of proposed kernels $K$ are trivially symmetric because
+  $K_1, K_2, K_3$ are symmetric; and because the product of 2 real
+  numbers is commutative (for (1f)).  Thanks to Mercer's theorem, it
+  is sufficient to prove the corresponding properties for positive
+  semidefinite matrices.  To differentiate between matrix and kernel
+  function, we'll use $G_i$ to denote a kernel matrix (Gram matrix)
+  corresponding to a kernel function $K_i$.
+
+  \begin{enumerate}
+
+  \item Kernel.  The sum of 2 positive semidefinite matrices is a
+    positive semidefinite matrix: $\forall z\; z^T G_1 z \geq 0, z^T
+    G_2 z \geq 0$ since $K_1, K_2$ are kernels.  This implies $\forall
+    z\; z^T G z = z^T G_1 z + z^T G_2 z \geq 0$.
+
+  \item Not a kernel.  Counterexample: Let $K_1$ be a kernel with positive definite matrix $G_1$ and let $K_2 = 2K_1$ (we are using
+    (1c) here to claim $K_2$ is a kernel).  Then we have $\forall z\;
+    z^T G z = z^T (G_1 - 2G_1) z = -z^T G_1 z < 0$.
+
+  \item Kernel.  $\forall z\; z^T G_1 z \geq 0$, which implies
+    $\forall z\; a z^T G_1 z \geq 0$.
+
+  \item Not a kernel.  Counterexample: Let $K_1$ be a kernel with positive definite matrix $G_1$ and set $a = 1$.  Then we have $\forall
+    z\; -z^T G_1 z \leq 0$.
+
+  \item Kernel.  $K_1$ is a kernel, thus $\exists \phi^{(1)}$ such that
+    $K_1(x, z) = \phi^{(1)} (x)^T \phi^{(1)} (z) = \sum_i \phi_i^{(1)} (x)
+    \phi_i^{(1)} (z)$.  Similarly, $K_2$ is a kernel, thus $\exists
+    \phi^{(2)}\; K_2(x, z) = \phi^{(2)} (x)^T \phi^{(2)} (z) = \sum_j
+    \phi_j^{(2)} (x) \phi_j^{(2)} (z)$.
+    \begin{align}
+      K(x, z)
+      &= K_1(x, z)K_2(x, z) \\
+      &= \sum_i \phi_i^{(1)} (x) \phi_i^{(1)} (z) \sum_i \phi_i^{(2)}
+      (x) \phi_i^{(2)} (z) \\
+      &= \sum_i \sum_j \phi_i^{(1)} (x) \phi_i^{(1)} (z) \phi_j^{(2)}
+      (x) \phi_j^{(2)} (z) \\
+      &= \sum_i \sum_j (\phi_i^{(1)} (x) \phi_j^{(2)} (x))
+      (\phi_i^{(1)} (z) \phi_j^{(2)} (z)) \\
+      &= \sum_{(i,j)} \psi_{i, j}(x) \psi_{i, j}(z)
+    \end{align}
+    Where the last equality holds because that's how we define
+    $\psi$.  We see $K$ can be written in the form $K(x, z) =
+    \psi(x)^T \psi(z)$ so it is a kernel.
+
+%    Here is an alternate super-slick linear-algebraic proof.  If $G$ is
+%    the Gram matrix for the product $K_1 \times K_2$, then $G$ is a
+%    principal submatrix of the Kronecker product $G_1 \otimes G_2$, where
+%    $G_i$ is the Gram matrix for $K_i$. As the Kronecker product is
+%    positive semi-definite, so are its principal submatrices.
+
+  \item Kernel. Just let $\phi(x) = f(x)$, and since $f(x)$ is a
+    scalar, we have $K(x, z) = \phi(x)^T \phi(z)$ and we are done.
+
+  \item Kernel. Since $K_3$ is a kernel, the matrix $G_3$ obtained
+    for \emph{any} finite set $\{x^{(1)},\ldots,x^{(\nexp)}\}$ is positive
+    semidefinite, and so it is also positive semidefinite for the sets
+    $\{\phi(x^{(1)}),\ldots,\phi(x^{(\nexp)})\}$.
+
+  \item Kernel. By combining (1a) sum, (1c) scalar product, (1e)
+    powers, (1f) constant term, we see that any polynomial of a kernel
+    $K_1$ will again be a kernel.
+
+  \end{enumerate}
+
+\end{answer}

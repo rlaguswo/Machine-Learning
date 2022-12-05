@@ -1,0 +1,65 @@
+\begin{answer}
+	
+	Note that $g'(z) = g(z)(1-g(z))$, and thus for $h(x) = g(\theta^T x)$, we have
+	$\partial h(x) / \partial \theta_k = h(x)(1 - h(x)) x_k$. We will use the
+	latter fact in the following derivations.
+	
+	Letting $h_{\theta}(x^{(i)}) = g(\theta^T x^{(i)})
+	= 1/(1 + \exp(-\theta^T x^{(i)})$, we have
+	%
+	\begin{align*}
+		\frac{\partial\log h_{\theta}(x^{(i)})}{\partial\theta_k}
+		& = \frac{1}{h_{\theta}(x^{(i)})}\frac{\partial
+	h_{\theta}(x^{(i)})}{\partial\theta_k}
+		= (1 - h_{\theta}(x^{(i)}))x^{(i)}_k\\
+		\frac{\partial\log(1 - h_{\theta}(x^{(i)}))}{\partial\theta_k}
+		& = \frac{1}{1 - h_{\theta}(x^{(i)})}
+		    \frac{\partial(1 -h_{\theta}(x^{(i)}))}{\partial\theta_k}
+	   = -h_{\theta}(x^{(i)})x^{(i)}_k.
+	\end{align*}
+	%
+	Substituting into our equation for $J(\theta)$, we have
+	%
+	\begin{align*}
+		\frac{\partial J(\theta)}{\partial\theta_k}
+		& = -\frac{1}{\nexp}\sum_{i = 1}^{\nexp}y^{(i)}(1 - h_{\theta}(x^{(i)}))x^{(i)}_k
+			- (1 - y^{(i)})h_{\theta}(x^{(i)})x^{(i)}_k\\
+		& = -\frac{1}{\nexp}\sum_{i = 1}^{\nexp}(y^{(i)} - h_{\theta}(x^{(i)}))x^{(i)}_k.
+	\end{align*}
+	%
+	Consequently, the $(k, l)$ entry of the Hessian is given by
+	%
+	\begin{align*}
+		H_{kl} = \frac{\partial^2 J(\theta)}{\partial\theta_k\partial\theta_l}
+		& = -\frac{1}{\nexp}\sum_{i = 1}^{\nexp}
+			\frac{\partial}{\partial\theta_l}(y^{(i)} - h_{\theta}(x^{(i)}))x^{(i)}_k\\
+		& = \frac{1}{\nexp}\sum_{i = 1}^{\nexp}
+			h_{\theta}(x^{(i)})(1 - h_{\theta}(x^{(i)}))x^{(i)}_l x^{(i)}_k.
+	\end{align*}
+	%
+	Using the fact that $X = xx^T$ if and only if $X_{ij} = x_i x_j$, we have
+	%
+	\begin{equation*}
+		H = \frac{1}{\nexp}\sum_{i = 1}^{\nexp}
+			h_{\theta}(x^{(i)})(1 - h_{\theta}(x^{(i)}))x^{(i)} x^{(i)T}.
+	\end{equation*}
+	%
+	
+	To prove that $H$ is positive semi-definite, we show $z^T Hz \ge 0$ for all
+	$z\in\Re^\di$. Letting $z\in\Re^\di$, we have
+	%
+	\begin{align*}
+		z^T H z
+		& = \frac{1}{\nexp}z^T\left(\sum_{i = 1}^{\nexp}
+			h_{\theta}(x^{(i)})(1 - h_{\theta}(x^{(i)}))x^{(i)} x^{(i)T}\right)z\\
+		& = \frac{1}{\nexp}\sum_{i = 1}^{\nexp}
+			h_{\theta}(x^{(i)})(1 - h_{\theta}(x^{(i)}))(z^Tx^{(i)})(x^{(i)T}z)\\
+		& = \frac{1}{\nexp}\sum_{i = 1}^{\nexp}
+			h_{\theta}(x^{(i)})(1 - h_{\theta}(x^{(i)}))(z^Tx^{(i)})^2
+		\ge 0.
+	\end{align*}
+	%
+	The last inequality holds because $0\le h_{\theta}(x^{(i)})\le 1$ so
+	$h_{\theta}(x^{(i)})(1 - h_{\theta}(x^{(i)})) \ge 0$, and trivially
+	$(z^Tx^{(i)})^2 \ge 0$. Therefore $H$ is positive semi-definite.
+\end{answer}

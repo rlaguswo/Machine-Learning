@@ -1,0 +1,19 @@
+\begin{answer}
+Let $X$ denote the design matrix, where each row indicates one example, and each column indicates a feature. Recall that we derived earlier (in Convexity of GLMs) the Hessian of GLMs w.r.t $\theta$ is
+$$H = \nabla_\theta^2\ell(\theta;X) = \sum_{i=1}^\nexp\text{Var}\left[ y;\theta, \xsi \right] \xsi x^{(i)T}$$
+Observe that the Hessian is not a function of $y$. Similarly, the Fisher Information of the GLM model will be
+$$\mathcal{I}(\theta;X) = -\sum_{i=1}^\nexp \E_{y\sim p(y;\theta, \xsi)} \left[ \nabla_\theta^2 \ell(\theta;\xsi) \right]$$
+
+Therefore,
+\begin{align*}
+\tilde{d} &\propto \mathcal{I}(\theta;X)^{-1} \nabla_\theta\ell(\theta;X) \\
+&= -\left(\sum_{i=1}^\nexp \E_{y\sim p(y;\theta, \xsi)}\left[ \nabla_\theta^2 \ell(\theta;\xsi) \right] \right)^{-1}\nabla_\theta\ell(\theta;X) \\
+&= -\left(\sum_{i=1}^\nexp \E_{y\sim p(y;\theta, \xsi)}\left[ \text{Var}\left[ y;\theta,\xsi \right] \xsi x^{(i)T} \right] \right)^{-1}\nabla_\theta\ell(\theta;X) \\
+&= -\left(\sum_{i=1}^\nexp \text{Var}\left[ y;\theta,\xsi \right] \xsi x^{(i)T} \right)^{-1}\nabla_\theta\ell(\theta;X) \\
+&= -\left(\sum_{i=1}^\nexp \nabla_\theta^2\ell(\theta;\xsi) \right)^{-1}\nabla_\theta\ell(\theta;X) \\
+&= -\left(\nabla_\theta^2\ell(\theta;X) \right)^{-1}\nabla_\theta\ell(\theta;X) \\
+&= -H^{-1}\nabla_\theta\ell(\theta;X) \\
+&= \text{ Newton's method update.}
+\end{align*}
+
+\end{answer}

@@ -1,0 +1,23 @@
+\begin{answer}
+  \begin{equation*}
+      p(y;\eta) = \frac{b(y)e^{\eta y}}{\int b(y)e^{\eta y} dy}
+\end{equation*}
+\begin{equation*}
+      A(\eta) = \int b(y)e^{\eta y} dy
+\end{equation*}
+\begin{equation*}
+      a(\eta) = log A(\eta)
+  \end{equation*}
+  
+  \begin{equation*}
+      \frac{d}{d\eta}a(\eta) = \frac{d}{d\eta}log A(\eta)
+  \end{equation*}
+  \begin{equation*}
+      = \frac{\frac{d}{d\eta}\int b(y)e^{\eta y} dy}{A(\eta)}  
+  \end{equation*}
+  By using hint in this sub-problem, we get...
+  \begin{equation*}
+      \frac{\int b(y)*y*e^{\eta y} dy}{A(\eta)} = \int\frac{ b(y)*y*e^{\eta y} dy}{A(\eta)} = \int p(y;\eta)y dy = E[Y;\eta]
+  \end{equation*}
+  Therefore, $E[Y;\eta] = \frac{d}{d\eta}a(\eta)$
+\end{answer}

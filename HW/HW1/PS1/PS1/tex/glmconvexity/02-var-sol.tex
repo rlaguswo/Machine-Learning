@@ -1,0 +1,23 @@
+\begin{answer}
+    \begin{equation*}
+        \frac{d^{2}}{d\eta^{2}}a(\eta) = \frac{d}{d\eta}E[Y;\eta]
+    \end{equation*}
+    \begin{equation*}
+        \frac{d}{d\eta}\int y*p(y;\eta)dy =  \frac{d}{d\eta}\int y*b(y)*e^{\eta*y-a(\eta)}dy = \int y*b(y)(y-\frac{d}{d\eta}a(\eta)*e^{\eta*y-a(\eta)}dy
+    \end{equation*}
+    \begin{equation*}
+        = \int b(y)*y*(y-E[Y;\eta])*e^{\eta*y-a(\eta)}dy = \int y^{2}p(y;\eta) - y*p(y;\eta)E[Y;\eta] dy
+    \end{equation*}
+    \begin{equation*}
+        = \int y^{2}p(y;\eta) dy - E[Y;\eat]\int y*p(y;\eta)dy =
+        \int y^{2}p(y;\eta) dy - E[Y;\eta]^{2}
+    \end{equation*}
+    \begin{equation*}
+        = E[Y^{2};\eta] - - E[Y;\eta]^{2} = Var(Y;\eta)
+    \end{equation*}
+    
+    Therefore,
+    \begin{equation*}
+        Var(Y;\eta) =  \frac{d^{2}}{d\eta^{2}}a(\eta)
+    \end{equation*}
+\end{answer}

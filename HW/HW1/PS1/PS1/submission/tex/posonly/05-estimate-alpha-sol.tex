@@ -1,0 +1,28 @@
+\begin{answer}
+    From the crucial assumption $p(t^{i} = 1|x^{i}) \in \{0,1\}$,
+    we can know that the data x includes t, and the data x is consisted of $t = 0$ or $t = 1$.
+    
+    Furthermore, in the initial setting of problem 2 we can know that $y = 1$ implied $t = 1$. Thus, $(y = 1) \in (t = 1)$
+    
+    \begin{equation*}
+        h(x^{i}) = p(y^{i} = 1| x ^{i}) = \alpha p(t^{i} = 1|x^{i}
+        , (part (d))
+    \end{equation*}
+    
+    Because of the crucial assumption $p(t^{i} = 1|x^{i}) \in \{0,1\}$, $h(x^{i}) \in \{\alpha, 0\}$.
+    
+    When we divide the case of $E[h(x^{i}|y=1]$, we can know the probability of $h(x^{i})$ given to $y = 1$.
+    
+    To be specific, when it is in the region of $t = 0$ in the data x, the probability of $h(x^{i})$ is zero respect to the probability of $y = 1$, and $h(x^{i}) = 0$. However, when it is in the region of $t = 1$ in the data x, the probability of $h(x^{i})$ is always 1 respect to the probability of $y = 1$, and $h(x^{i}) = \alpha$. 
+    
+    Therefore, by using the definition of conditional mean,
+    \begin{equation*}
+        E[h(x^{i})|y = 1] = \alpha *1 + 0*0 = \alpha
+    \end{equation*}
+    
+    \begin{equation*}
+        \therefore \alpha = E[h(x^{i})|y = 1]
+    \end{equation*}
+    
+
+\end{answer}

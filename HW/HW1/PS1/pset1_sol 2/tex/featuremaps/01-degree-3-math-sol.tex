@@ -1,0 +1,17 @@
+\begin{answer}
+\begin{align*}
+    J(\theta)=\dfrac{1}{2}\sum_{i=1}^{N}(\theta^T\hat{x}^{(i)}-y^{(i)})^{2}
+\end{align*}
+
+Differentiating this objective, we get the update rule:
+\begin{align*}
+    \nabla_{\theta} J(\theta)&=\sum_{i=1}^{N}(\theta^T\hat{x}^{(i)}-y^{(i)})(\hat{x}^{(i)})\\
+    &\propto \lambda \sum_{i=1}^{N}(\theta^T\hat{x}^{(i)}-y^{(i)})(\hat{x}^{(i)})\\
+\end{align*}
+Where $\lambda$ is the learning rate.
+The update rule is:
+\begin{align*}
+    \theta &:=\theta - \lambda \sum_{i=1}^{N}(\theta^T\hat{x}^{(i)}-y^{(i)})(\hat{x}^{(i)})\\
+\end{align*}
+
+\end{answer}

@@ -1,0 +1,32 @@
+\begin{answer}
+	
+First, prove the statement $h(x^{(i)}) = \alpha$ when $y^{(i)} = 1$.
+
+We are given that $p(t^{(i)}=1\mid x^{(i)}) \in \{0,1\}$.
+
+We will consider the cases when $p(t^{(i)}=1\mid x^{(i)}) = 0$ and when $p(t^{(i)}=1\mid x^{(i)}) = 1$ separately.
+
+\smallskip
+
+Case: $p(t^{(i)}=1\mid x^{(i)}) = 0$ \\
+In this case it must be the case that $t^{(i)} = 0$.  We are given in the introduction to the problem that $p(y^{(i)}=0\mid t^{(i)} = 0, x^{(i)}) = 1$. Therefore, as $t^{(i)} = 0$, we must also have that $y^{(i)} = 0$. Thus $h(x^{(i)}) = \alpha$ when $y^{(i)} = 1$ is trivially satisfied as it never applies to this case (as $y^{(i)}$ cannot simultaneously be both 0 and 1).
+
+\smallskip
+
+Case: $p(t^{(i)}=1\mid x^{(i)}) = 1$ \\
+We start where we left off in part d.
+
+\begin{align}
+p(t^{(i)}=1\mid x^{(i)}) & = \frac{p(y^{(i)}=1\mid x^{(i)})}{\alpha} \\
+\alpha & = \frac{p(y^{(i)}=1\mid x^{(i)})}{p(t^{(i)}=1\mid x^{(i)})} \\
+\alpha & = \frac{h(x^{(i)})}{1} \\
+\alpha & = h(x^{(i)})
+\end{align}
+
+\smallskip
+
+Thus $h(x^{(i)}) = \alpha$ when $y^{(i)} = 1$ as the statement is true in both cases.
+
+Therefore $\mathbb{E}[h(x^{(i)})  \mid y^{(i)} = 1]= \alpha $.
+
+\end{answer}

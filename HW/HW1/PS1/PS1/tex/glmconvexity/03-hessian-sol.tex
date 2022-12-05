@@ -1,0 +1,19 @@
+\begin{answer}
+\begin{equation*}
+    l(\theta) = -\Sigma (log(b(y)*e^{\eta y -  a(\eta)})) = -\Sigma (log(b(y)) + (\eta y - a(\eta)))
+\end{equation*}
+\begin{equation*}
+    \nabla_\theta l(\theta) = 0 + -\nabla_\theta(\eta y - a(\eta)) = -\nabla_\theta(\theta^{T}x y - a(\theta^{T}x)) = -(y - a'(\theta^{T}x))x_j
+\end{equation*}
+\begin{equation*}
+    \nabla^{2}_\theta l(\theta) = \nabla_\theta(-(y - a'(\theta^{T}x))x_j) = a''(\theta^{T}x)x_ix_j = Var[Y;\eta]xx^{T}
+\end{equation*}
+Since the variance of any probability distribution is non-zero, we will denote $Var[Y;\eta]$ as $C$, and $C \geq 0$.
+\begin{equation*}
+    \nabla^{2}_\theta l(\theta) = Cxx^{T} \Rightarrow z^{T} \nabla^{2}_\theta l(\theta)z = C*z^{T}xx^{T}z
+\end{equation*}
+\begin{equation*}
+    \Rightarrow C*(\sum_{i=1}^\nexp z_ix_i)*(\sum_{i=1}^\nexp z_jx_j) = C*(\sum_{i=1}^\nexp z_ix_i)^{2} \geq 0
+\end{equation*}
+From the equation above, we can know that the Hessian of the loss w.r.t $\theta$ is always PSD.
+\end{answer}

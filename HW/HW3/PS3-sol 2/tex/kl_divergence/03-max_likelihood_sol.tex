@@ -1,0 +1,22 @@
+\begin{answer}
+\begin{align*}
+\arg\min_\theta \KL(\hat{P}\|P_\theta)
+&= \arg\min_\theta \sum_x \hat{P}(x) \log \hat{P}(x) - \hat{P}(x) \log P_\theta(x) \\
+&= \arg\min_\theta \sum_x - \hat{P}(x) \log P_\theta(x) \\
+&= \arg\max_\theta \sum_x \hat{P}(x) \log P_\theta(x) \\
+&= \arg\max_\theta \sum_x \frac{1}{\nexp} \sum_{i=1}^\nexp 1\{\xsi=x\}\log P_\theta(x)\\
+&= \arg\max_\theta \frac{1}{\nexp} \sum_{i=1}^\nexp \sum_x 1\{\xsi=x\}\log P_\theta(x)\\
+&= \arg\max_\theta \frac{1}{\nexp} \sum_{i=1}^\nexp \log P_\theta(\xsi)\\
+&= \arg\max_\theta \sum_{i=1}^\nexp \log P_\theta(\xsi)
+\end{align*}
+where we used in order: definition of KL, leaving out terms independent of $\theta$, flip sign and correspondingly flip min-max, definition of $\hat{P}$, switching order of summation, definition of the indicator and simplification since $1/n$ is non-negative.\\
+Another possible proof without switching sums is as follows. Without loss of generality, let's write $\mathcal{X}=\{x_1, \dots, x_{|\mathcal{X}|}\}$. The function being optimized over in the fourth equation above can then be re-written as:
+\begin{align*}
+	\sum_{x\in\mathcal{X}}\sum_{i=1}^n \mathds{1}\{x^{(i)}=x\}\log p_{\theta}(x) &= \sum_{i=1}^n \mathds{1}\{x^{(i)}=x_1\}\log p_{\theta}(x_1) + \dots + \sum_{i=1}^n \mathds{1}\{x^{(i)}=x_{|\mathcal{X}|}\} \log p_{\theta}(x_{|\mathcal{X}|})\\
+	&= \sum_{k=1}^{|\mathcal{X}|}\sum_{x\in S_k} \log p_\theta(x) \quad \text{where $S_k = \{ x^{(i)} \mid x^{(i)} = x_k, i = 1, \dots, n \} $} \\
+	&= \sum_{i=1}^n \log p_\theta(x^{(i)})
+\end{align*}
+since:
+$$ \bigcup_{k=1}^{|\mathcal{X}|}S_k = \{x^{(i)} \mid i = 1, \dots, n\} $$
+and this union is disjoint because each $x_k$ (from the set $\mathcal{X}$) is distinct. This proof can easily be extended in the case of $\mathcal{X}$ infinite (but still countable).
+\end{answer}

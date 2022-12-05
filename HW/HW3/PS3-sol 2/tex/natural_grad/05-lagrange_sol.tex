@@ -1,0 +1,36 @@
+\begin{answer}
+For the constrained minimization problem
+$$
+d=\arg\max_d \ell(\theta+d)
+\quad \text{subject to} \quad
+\KL(p_{\theta}||p_{\theta+d}) = c
+$$
+Using Lagrange multipliers we have the following equation:
+$$
+\nabla_d(\ell(\theta+d) - \lambda(\KL(p_{\theta}||p_{\theta+d})-c)) = 0
+$$
+We use the results of (d) to obtain:
+$$
+\nabla_d \left( \ell(\theta+d)-\lambda \left( \dfrac{1}{2}d^\top \mathcal{I}(\theta)d-c \right)\right) = 0
+$$
+Taylor expansion at $\theta$ gives us
+$$
+\ell(\theta+d) = \ell(\theta)+\nabla_\theta \ell(\theta)^\top d
+$$
+So we have
+\begin{align*}
+    \nabla_d \left(\ell(\theta+d)-\lambda\left(\dfrac{1}{2}d^\top\mathcal{I}(\theta)d-c \right)\right) &= 0 \\
+    \nabla_d \left(\ell(\theta)+\nabla_\theta \ell(\theta)^\top d-\lambda\left(\dfrac{1}{2}d^\top \mathcal{I}(\theta)d-c \right)\right) &= 0 \\
+    \nabla_\theta\ell(\theta)-\lambda \mathcal{I}(\theta)d &= 0 \\
+    \dfrac{1}{\lambda}\mathcal{I}(\theta)^{-1}\nabla_\theta\ell(\theta) &= d
+\end{align*}
+
+Plugging back the value of $d$ in the constraint $\KL(p_{\theta}||p_{\theta+d})=c$ and setting $h=\nabla_{\theta}l(\theta)$:
+\begin{align*}
+    \dfrac{1}{2}d^T\mathcal{I}(\theta)d &= c \\
+    \dfrac{1}{2}\left(\dfrac{1}{\lambda}\mathcal{I}(\theta)^{-1}h \right)^T\mathcal{I}(\theta)\left(\dfrac{1}{\lambda}\mathcal{I}(\theta)^{-1}h\right) &= c \\
+    \dfrac{1}{2}h^T\mathcal{I}(\theta)^{-1}h &= c\lambda^2 \\
+    \sqrt{\dfrac{h^T\mathcal{I}(\theta)^{-1}h}{2c}} &= \lambda
+\end{align*}
+Plugging in this value of $\lambda$ we get $d = \sqrt{\dfrac{2c}{h^\top\mathcal{I}(\theta)^{-1}h}}\mathcal{I}(\theta)^{-1}h$
+\end{answer}

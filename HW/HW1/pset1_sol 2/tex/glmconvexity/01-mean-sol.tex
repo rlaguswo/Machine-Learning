@@ -1,0 +1,19 @@
+\begin{answer}
+The expectation of an exponential family distribution is first derivative of
+the log-partition function $a(\eta)$ w.r.t the natural parameters $\eta$.
+    \begin{align*}
+      \frac{\partial}{\partial{\eta}}p(y;\eta)
+      &= p(y;\eta)\left(y - \frac{\partial}{\partial{\eta}}a(\eta)\right) \\
+      \Rightarrow \int \frac{\partial}{\partial{\eta}}p(y;\eta)dy
+      &= \int p(y;\eta)\left(y -
+        \frac{\partial}{\partial{\eta}}a(\eta)\right)dy \\
+      \Rightarrow  \frac{\partial}{\partial{\eta}}\int p(y;\eta)dy
+        &= \int yp(y;\eta)dy
+          - \int p(y;\eta)\frac{\partial}{\partial{\eta}}a(\eta)dy \\
+      \Rightarrow  \frac{\partial}{\partial{\eta}}1
+        &= \mathbb{E}[Y;\eta] -
+          \frac{\partial}{\partial{\eta}}a(\eta)\int p(y;\eta)dy \\
+      \Rightarrow \mathbb{E}[Y; \eta]
+        &= \frac{\partial}{\partial{\eta}}a(\eta)
+    \end{align*}
+\end{answer}

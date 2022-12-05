@@ -1,0 +1,21 @@
+\newcommand{\pt}{p_\theta}
+\newcommand{\ptp}{p_{\theta'}}
+
+\begin{answer}
+For a very small $d$ we perform the Taylor expansion of $\KL(\pt \| p_{\theta+d})$ at $\theta$ where we choose $f(x) = \KL(\pt \| p_x)$.
+\begin{align*}
+\KL(\pt\|p_{\theta+d})
+&\approx \KL(\pt\|\pt) + \left( \nabla_{\theta'} \KL(\pt\|\ptp)|_{\theta'=\theta} \right)^T (\tilde{\theta}-\theta) \\ &\quad+ \dfrac{1}{2} (\tilde{\theta}-\theta)^T \left( \nabla_{\theta'}^2\KL(\pt\|\ptp)|_{\theta'=\theta} \right) (\tilde{\theta}-\theta) \\
+&= 0 + \left( \nabla_{\theta'} \KL(\pt\|\ptp)|_{\theta'=\theta} \right)^T d + \dfrac{1}{2} d^T \left( \nabla_{\theta'}^2 \KL(\pt\|\ptp)|_{\theta'=\theta} \right) d \\
+&= \left( \nabla_{\theta'} \left[ \E_{y \sim p(y;\theta)}[\log p(y;\theta) ] - \E_{y \sim p(y;\theta)}[\log p(y;\theta')] \right] |_{\theta'=\theta} \right)^T d \\ &\quad+ \dfrac{1}{2}d^T \left( \nabla_{\theta'}^2 \left[ \E_{y \sim p(y;\theta)}[\log p(y;\theta)] - \E_{y \sim p(y;\theta)}[\log p(y;\theta')] \right] |_{\theta'=\theta} \right) d \\
+&= \left( \nabla_{\theta'} \left[ -\E_{y \sim p(y;\theta)}[\log p(y;\theta')] \right] |_{\theta'=\theta} \right)^T d \\ &\quad+ \dfrac{1}{2} d^T \left( \nabla_{\theta'}^2 \left[ - \E_{y \sim p(y;\theta)}[\log p(y;\theta')] \right]|_{\theta'=\theta} \right) d \\
+&= -\E_{y \sim p(y;\theta)}[\nabla_{\theta'}\log p(y;\theta')|_{\theta'=\theta}] - \dfrac{1}{2} d^T \E_{y \sim p(y;\theta)} \left[ -\nabla^2_{\theta'} \log p(y;\theta')|_{\theta'=\theta} \right] d \\
+&= 0 + \dfrac{1}{2} d^T \mathcal{I}(\theta) d
+\end{align*}
+
+This is obtained from the results
+\begin{align*}
+\E_{y \sim p(y;\theta)} \left[ -\nabla^2_{\theta'} \log p(y;\theta')|_{\theta'=\theta} \right] &= \mathcal{I}(\theta) \\
+\E_{y \sim p(y;\theta)} \left[ \nabla_{\theta'} \log p(y;\theta') |_{\theta'=\theta} \right] &= 0
+\end{align*}
+\end{answer}

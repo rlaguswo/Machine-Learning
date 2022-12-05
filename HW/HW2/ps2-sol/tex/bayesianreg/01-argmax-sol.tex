@@ -1,0 +1,9 @@
+\begin{answer}
+\begin{align*}
+\theta_{\text{MAP}} &= \arg\max_\theta p(\theta|x,y) \\
+&= \arg\max_\theta \frac{p(y|x,\theta) p(\theta|x)}{p(y|x)} & \text{(Bayes rule)}\\
+&= \arg\max_\theta p(y|x,\theta) p(\theta|x) & \text{($p(y|x)$ is a constant w.r.t $\theta$)} \\
+&= \arg\max_\theta p(y|x,\theta) p(\theta). & \text{(marginal independence assumption)}
+\end{align*}
+
+\end{answer}

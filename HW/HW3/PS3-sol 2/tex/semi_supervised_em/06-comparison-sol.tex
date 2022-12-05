@@ -1,0 +1,8 @@
+\begin{answer}
+  Even with just 5 labeled examples per cluster, semi-supervised EM outperforms classical EM in all three categories.
+  \begin{enumerate}[label=\roman*.]
+    \item Semi-supervised is much faster: Unsupervised EM takes roughly 150 iterations to converge. Semi-supervised EM takes about 25.
+    \item Semi-supervised is much more stable: Assignments change for unsupervised, but they are almost exactly the same for semi-supervised EM.
+    \item Semi-supervised finds a higher quality assignment overall: Unsupervised EM suffers from a few types of errors (\emph{e.g.,} failing to discover there is just a single relatively high-variance Gaussian distribution in the mixture). Semi-supervised EM almost exactly uncovers the underlying distribution.
+  \end{enumerate}
+\end{answer}

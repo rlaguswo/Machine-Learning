@@ -1,0 +1,89 @@
+\begin{answer}
+   
+First, derive the expression for the log-likelihood of the training
+data:
+\begin{eqnarray*}
+  \ell(\phi, \mu_{0}, \mu_1, \Sigma) &=& \log \prod_{i=1}^\nexp p(x^{(i)} | y^{(i)}; \mu_{0}, \mu_1, \Sigma) p(y^{(i)}; \phi)\\
+  &=& \sum_{i=1}^{\nexp} \log p(x^{(i)} | y^{(i)}; \mu_{0}, \mu_1, \Sigma) +
+  \sum_{i=1}^{n} \log p(y^{(i)}; \phi)\\
+  &\simeq& \sum_{i=1}^{\nexp} \big[\frac{1}{2}\log\frac{1}{|\Sigma|}
+  -\frac{1}{2}(x^{(i)}-\mu_{y^{(i)}})^T \Sigma^{-1} (x^{(i)}-\mu_{y^{(i)}})
+  + %\sum_{i=1}^{n} \big[
+    \frac{y^{(i)}}{2} \log \phi + \frac{1-y^{(i)}}{2} \log(1-\phi)\big]
+\end{eqnarray*}
+where constant terms indepedent of the parameters have been ignored in
+the last expression.
+
+Now, the likelihood is maximized by setting the derivative (or
+gradient) with respect to each of the parameters to zero.
+
+\begin{eqnarray*}
+  \frac{\partial \ell}{\partial \phi} &=&
+  \sum_{i=1}^{\nexp}\big[\frac{y^{(i)}}{2\phi} - \frac{1-y^{(i)}}{2(1-\phi)}\big]\\
+  &=& \frac{\sum_{i=1}^{\nexp} 1\{y^{(i)} = 1\}}{\phi} - \frac{\nexp-\sum_{i=1}^{\nexp} 1\{y^{(i)} = 1\}}{1-\phi}
+\end{eqnarray*}
+Setting this equal to zero and solving for $\phi$ gives the maximum
+likelihood estimate.
+
+For $\mu_{0}$, take the gradient of the log-likelihood, and then use the same kinds of tricks
+as were used to analytically solve the linear regression problem.
+\begin{eqnarray*}
+  \nabla_{\mu_{0}}\ell &=& -\frac{1}{2}\sum_{i:y^{(i)}={0}}
+  \nabla_{\mu_{0}}(x^{(i)}-\mu_{0})^T \Sigma^{-1} (x^{(i)}-\mu_{0})\\
+  &=& -\frac{1}{2}\sum_{i:y^{(i)}={0}} \nabla_{\mu_{0}}
+  \big[ \mu_{0}^T \Sigma^{-1} \mu_{0} - x^{{(i)}^T} \Sigma^{-1} \mu_{0} -
+  \mu_{0}^T \Sigma^{-1} x^{(i)}\big]\\
+  &=& -\frac{1}{2}\sum_{i:y^{(i)}={0}} \nabla_{\mu_{0}}
+  tr \big[ \mu_{0}^T \Sigma^{-1} \mu_{0} - x^{{(i)}^T} \Sigma^{-1} \mu_{0} -
+  \mu_{0}^T \Sigma^{-1} x^{(i)}\big]\\
+  &=& -\frac{1}{2}\sum_{i:y^{(i)}={0}} \big[
+    2 \Sigma^{-1} \mu_{0} - 2 \Sigma^{-1} x^{(i)}
+    \big]
+\end{eqnarray*}
+The last step uses matrix calculus identities (specifically, those
+given in page 8 of the lecture notes), and also the fact that $\Sigma$
+(and thus $\Sigma^{-1}$) is symmetric.
+
+Setting this gradient to zero gives the maximum likelihood estimate
+for $\mu_{0}$. The derivation for $\mu_1$ is similar to the one above.
+
+For $\Sigma$, we find the gradient with respect to $S = \Sigma^{-1}$
+rather than $\Sigma$ just to simplify the derivation (note that
+$|S| = \frac{1}{|\Sigma|}$).
+You should
+convince yourself that the maximum likelihood estimate $S_\nexp$ found in this
+way would correspond to the actual maximum likelihood estimate
+$\Sigma_\nexp$ as $S_\nexp^{-1} = \Sigma_\nexp$.
+\begin{eqnarray*}
+  \nabla_S\ell &=& \sum_{i=1}^{\nexp} \nabla_S
+  \big[ \frac{1}{2}\log|S| -
+    \frac{1}{2}\underbrace{(x^{(i)}-\mu_{y^{(i)}})^T}_{b_i^T} S \underbrace{(x^{(i)}-\mu_{y^{(i)}})}_{b_i}
+    \big]\\
+  &=& \sum_{i=1}^{\nexp} \big[
+    \frac{1}{2 |S|} \nabla_S |S| - \frac{1}{2} \nabla_S b_i^T S b_i
+    \big]\\
+\end{eqnarray*}
+But, we have the following identities:
+\begin{equation*}
+\nabla_S |S| = |S| (S^{-1})^T
+\end{equation*}
+\begin{equation*}
+  \nabla_S b_i^T S b_i = \nabla_S tr \left( b_i^T S b_i \right) =
+  \nabla_S tr \left( S b_i b_i^T \right) = b_i b_i^T
+\end{equation*}
+In the above, we again used matrix calculus identities, and also the
+commutatitivity of the trace operator for square matrices. Putting
+these into the original equation, we get:
+\begin{eqnarray*}
+  \nabla_S\ell &=& \sum_{i=1}^{\nexp} \big[
+    \frac{1}{2} S^{-1} - \frac{1}{2} b_i b_i^T
+    \big]\\
+  &=& \frac{1}{2} \sum_{i=1}^{\nexp} \big[
+    \Sigma - b_i b_i^T
+    \big]
+\end{eqnarray*}
+
+Setting this to zero gives the required maximum likelihood estimate
+for $\Sigma$.
+
+\end{answer}

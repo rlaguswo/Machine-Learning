@@ -1,0 +1,30 @@
+\begin{answer}
+  \begin{align*}
+    \ell(\theta) &= - \log \left[p(y;\eta)\right] \\
+    &= - \log\left[b(y)\exp(\eta y - a(\eta))\right] \\
+    &= a(\eta) - \eta y + C \\
+    &= a(\theta^T x) - \theta^Txy + C
+  \end{align*}
+  Gradient of the loss w.r.t. $\theta$ is
+  \begin{align*}
+\nabla_\theta \ell(\theta) &= \frac{\partial}{\partial \eta}a(\eta)
+\nabla_\theta \eta - yx \\
+        &=\frac{\partial}{\partial \eta}a(\eta) x - yx
+    \end{align*}
+    Hessian of the loss w.r.t. $\theta$ is
+    \begin{align*}
+\nabla_\theta^2 \ell(\theta) &= \nabla_\theta \left( \nabla_\theta \ell(\theta)
+\right) \\
+&= \nabla_\theta \left( \frac{\partial}{\partial \eta}a(\eta) x - yx  \right) \\
+&=x\nabla_\theta \left( \frac{\partial}{\partial \eta}a(\eta)  \right) \\
+&= x \frac{\partial}{\partial \eta}\left( \frac{\partial}{\partial \eta}a(\eta)
+\right) \nabla_\theta \eta \\
+        &= \frac{\partial^2}{\partial \eta^2}a(\eta) xx^T \\
+        &= \text{Var}(Y; \eta) xx^T
+    \end{align*}
+
+Observe that $xx^T$ is always PSD because for any vector $z \in \mathbb{R}^\di$ we have $z^T(xx^T)z = (z^Tx)(x^Tz) = (z^Tx)^2 \ge 0$.
+Also, for any value of $\theta$, Var($Y; \eta$) is always positive. Therefore the
+Hessian $\nabla_\theta^2 \ell(\theta) = \text{Var}(Y; \eta) xx^T$ of GLM's
+NLL loss is PSD, and hence convex. (Note that just saying elements of H is non-negative is not sufficient in showing it is a PSD)
+\end{answer}

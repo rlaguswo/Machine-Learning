@@ -1,0 +1,49 @@
+\begin{answer}
+
+  Note: For this question students were allowed to choose two different parameterizations for y. They could do $y \in \{0, 1\}$ or $y \in \{-1, 1\}$.
+  Each paramaterization should result in slightly different answers. Both should be graded as correct.
+
+  In the high-dimensional space we update $\theta$ as follows:
+  \[ \theta := \theta + \alpha(y^{(i)} - h_\theta(\phi(x^{(i)})))
+  \phi(x^{(i)}) \]
+
+  So (assuming we initialize $\theta^{(0)} = \vec{0}$) $\theta$ will always be
+  a linear combination of the $\phi(x^{(i)})$, i.e., $\exists \beta_l$
+  such that $\theta^{(i)} = \sum_{l=1}^i \beta_l \phi(x^{(l)})$ after having
+  incorporated $i$ training points.  Thus $\theta^{(i)}$ can be compactly
+  represented by the coefficients $\beta_l$ of this linear
+  combination, i.e., $i$ real numbers after having incorporated $i$
+  training points $x^{(i)}$.  The initial value $\theta^{(0)}$ simply
+  corresponds to the case where the summation has no terms (i.e., an empty list
+  of coefficients $\beta_l$).
+
+  We do not work explicitly in the high-dimensional space, but use the
+  fact that
+  $$
+  g({\theta^{(i)}}^T \phi(x^{(i+1)}))
+  = g(\sum_{l=1}^i \beta_l \cdot \phi(x^{(l)})^T \phi(x^{i+1}))
+  = g(\sum_{l=1}^i \beta_l K(x^{(l)}, x^{(i+1)})),
+  $$
+  which can be computed efficiently.
+
+  We can efficiently update $\theta$. We just need to compute $\beta_i
+  = \alpha(y^{(i)} - g({\theta^{(i-1)}}^T \phi(x^{(i)})))$ at iteration $i$.
+  This can be computed efficiently, if we compute ${\theta^{(i-1)}}^T
+  \phi(x^{(i)})$ efficiently as described above.
+
+  In an alternative approach, one can observe that, unless a sample
+  $\phi(x^{(i)})$ is misclassified, $y^{(i)} - h_{\theta^{(i)}}(
+  \phi(x^{(i)}) )$ will be zero; otherwise, it will be $\pm 1$ (or $\pm 2$, if
+  the convention $y, h \in \{-1, 1\}$ is taken). The vector $\theta$, then, can
+  be represented as the sum
+  $\sum_{ \{ i : y^{(i)} \ne h_{\theta^{(i)}}( \phi(x^{(i)}) ) \} }
+  \alpha (2y^{(i)} - 1) \phi(x^{(i)})$ under the $y,h \in \{0,1\}$ convention,
+  and containing $(2 y^{(i)})$ under the other convention. This can then be
+  expressed as $\theta^{(i)} = \sum_{i \in \text{Misclassified} } \beta_i
+  \phi(x^{(i)})$ to be in more obvious congruence with the above. The efficient
+  representation can now be said to be a list which stores only those indices
+  that were misclassified, as the $\beta_i$s can be recomputed from the
+  $y^{(i)}$s and $\alpha$ on demand. The derivation for (b) is then only
+  cosmetically different, and in (c) the update rule is to add $(i+1)$ to the
+  list if $\phi(x^{(i+1)})$ is misclassified.
+\end{answer}

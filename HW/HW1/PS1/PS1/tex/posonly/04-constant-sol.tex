@@ -1,0 +1,21 @@
+\begin{answer}
+From previous sub-problem, we got...
+	\begin{equation*}
+	    p(y^{i} = 1, t^{i} = 1, x^{i}) = p(y^{i} = 1, x^{i})
+	\end{equation*}
+	\begin{equation*}
+	    p(y^{i} = 1, t^{i} = 1, x^{i}) = p(y^{i} = 1|t^{i} = 1,x^{i})p(t^{i} = 1|x^{i})p(x^{i}) = \alpha*p(t^{i} = 1|x^{i})p(x^{i})
+	\end{equation*}
+	\begin{equation*}
+	    \alpha*p(t^{i} = 1|x^{i})p(x^{i}) =  p(y^{i} = 1, x^{i}) \Rightarrow p(t^{i} = 1|x^{i}) = \frac{p(y^{i} = 1, x^{i})}{p(x^{i})}*(\frac{1}{\alpha})
+	\end{equation*}
+	\begin{equation*}
+	    \frac{p(y^{i} = 1, x^{i})}{p(x^{i})}*(\frac{1}{\alpha}) = \frac{p(y^{i} = 1|x^{i})}{\alpha}
+	\end{equation*}
+	
+	Therefore, 
+	\begin{equation*}
+	p(t^{(i)} = 1\mid x^{(i)}) = \frac{1}{\alpha}\cdot p(y^{(i)} = 1\mid x^{(i)})\label{eqn:3} 
+	\end{equation*}
+	
+\end{answer}

@@ -1,0 +1,17 @@
+\begin{answer}
+
+Let $\theta \in \Re^{\di}$.
+\begin{align*}
+\theta_{\text{MAP}} &= \arg\max_\theta p(\theta|x,y) \\
+&= \arg\max_\theta p(y|x,\theta) p(\theta) \\
+&= \arg\max_\theta \log p(y|x,\theta) + \log p(\theta) \\
+&= \arg\min_\theta -\log p(y|x,\theta) - \log p (\theta) \\
+&= \arg\min_\theta -\log p(y|x,\theta) - \log\left(\frac{1}{\sqrt{(2\pi)^{\di} |\eta^2I|}}\exp\left(-\frac{1}{2} \theta^T (\eta^2 I)^{-1} \theta\right)\right) \\
+&= \arg\min_\theta -\log p(y|x,\theta) - \log\frac{1}{\sqrt{(2\pi)^{\di} |\eta^2I|}} + \frac{1}{2} \theta^T \left(\frac{1}{\eta^2} I\right) \theta \\
+&= \arg\min_\theta -\log p(y|x,\theta) - C + \frac{1}{2 \eta^2} \theta^T \theta \\
+&= \arg\min_\theta -\log p(y|x,\theta) + \frac{1}{2 \eta^2} ||\theta||_2^2 \\
+&= \arg\min_\theta -\log p(y|x,\theta) + \lambda||\theta||_2^2
+\end{align*}
+where $\lambda = \frac{1}{2\eta^2}$.
+
+\end{answer}

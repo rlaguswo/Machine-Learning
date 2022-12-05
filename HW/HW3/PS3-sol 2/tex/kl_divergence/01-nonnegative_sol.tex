@@ -1,0 +1,23 @@
+\begin{answer}
+\begin{align*}
+-\KL(P\|Q) &= -\sum_x P(x)\log\frac{P(x)}{Q(x)}\\
+&= \sum_x P(x)\log\frac{Q(x)}{P(x)}\\
+&\leq \log \sum_x P(x)\frac{Q(x)}{P(x)}\\
+&= \log \sum_x Q(x)\\
+&= \log 1 \\
+&= 0
+\end{align*}
+Where all equalities follow from straight forward algebraic
+manipulation. The inequality follows from Jensen's inequality.
+
+To show the second part of the claim, note that $\log t$ is a
+strictly concave function of $t$.  Using the form of Jensen's
+inequality given in the lecture notes, we have
+equality if and only if
+$\frac{Q(x)}{P(x)}=\E_P \left[\frac{Q(x)}{P(x)}\right]$
+for all $x$.  But since
+$\E_P \left[\frac{Q(x)}{P(x)}\right] = \sum_x P(x) \frac{Q(x)}{P(x)} = \sum_x Q(x) = 1$,
+it follows that
+$P(x)=Q(x)$. Hence we have $\KL(P\|Q)=0$ if and only if
+$P(x)=Q(x)$ for all $x$.
+\end{answer}

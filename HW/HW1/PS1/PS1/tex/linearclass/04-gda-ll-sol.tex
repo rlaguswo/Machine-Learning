@@ -1,0 +1,116 @@
+\begin{answer}
+we will find maximum parameters of log likelihood by searching $\nabla l = 0$ for each parameter. 
+
+  \begin{equation*}
+      l(\phi,\mu_0, \mu_1, \Sigma) 
+      = \sum_{i=1}^\nexp(log(p(x^{i}|y^{i}) + \sum_{i=1}^\nexp(log(p(y^{i})))
+  \end{equation*}
+  
+  \begin{equation*}
+      p(y^{i}) = \phi^{y^{i}}(1-\phi)^{y^{i}}
+\end{equation*}
+\begin{equation*}
+      p(x^{i}|y^{i}) = \frac{1}{(2\pi)^{0.5d}|\Sigma|^{0.5}}exp(-0.5(x-\mu_(y^{i}))^{T}\Sigma^{-1}(x-\mu_(y^{i})))
+ \end{equation*}
+ 
+ \begin{equation*}
+     \nabla_\phi l = 0 = \nabla_\phi \sum_{i=1}^\nexp(log(p(x^{i}|y^{i}) + \nabla_\phi\sum_{i=1}^\nexp(log(p(y^{i}))) = 
+\end{equation*}
+\begin{equation*}
+      \nabla_\phi\sum_{i=1}^\nexp(log(\frac{1}{(2\pi)^{0.5d}|\Sigma|^{0.5}}exp(-0.5(x-\mu_(y^{i}))^{T}\Sigma^{-1}(x-\mu_(y^{i})))) + \nabla_\phi \sum_{i=1}^\nexp log(\phi^{y^{i}}(1-\phi)^{y^{i}}) = 
+ \end{equation*} 
+ \begin{equation*}
+     0 + \sum_{i=1}^\nexp (\frac{y^{i}}{\phi} - \frac{1-y^{i}}{1-\phi}) = 0
+ \end{equation*}
+ \begin{equation*}
+     \sum_{i=1}^\nexp (\frac{y^{i}}{\phi}) = \sum_{i=1}^\nexp( \frac{1-y^{i}}{1-\phi}) \Rightarrow \frac{1}{\phi}\sum_{i=1}^\nexp y^{i} = \frac{1}{1-\phi}(n - \sum_{i=1}^\nexp y^{i}) 
+ \end{equation*}
+ 
+ If we denote $\sum_{i=1}^\nexp y^{i}$ as X for the convenience of calculation, we get
+ \begin{equation*}
+     \frac{x}{\phi} = \frac{n-X}{1-\phi} \Rightarrow X-X\phi = n\phi - X\phi
+ \end{equation*}
+ Thus
+ \begin{equation*}
+     \phi = \frac{X}{n} = \frac{1}{n}\sum_{i=1}^\nexp y^{i} =  \frac{1}{n}\sum_{i=1}^\nexp 1\{y^{(i)} = 1\} \\
+ \end{equation*}
+ 
+For finding maximum $\mu_y$ for the likelihood function, we need to use $\nabla_\mu_y l = 0$.
+
+First, 
+\begin{equation*}
+    l = \sum_{i=1}^\nexp(log(p(x^{i}|y^{i})) + \sum_{i=1}^\nexp log(p(y^{i}) = 
+\end{equation*}
+\begin{equation*}
+\sum_{i=1}^\nexp(log(\frac{1}{(2\pi)^{0.5d}|\Sigma|^{0.5}}exp(-0.5(x-\mu_(y^{i}))^{T}\Sigma^{-1}(x-\mu_(y^{i})))) + \sum_{i=1}^\nexp log(\phi^{y^{i}}(1-\phi)^{y^{i}})
+\end{equation*}
+ \begin{equation*}
+     \nabla_\mu_y\sum_{i=1}^\nexp(log(\frac{1}{(2\pi)^{0.5d}|\Sigma|^{0.5}}exp(-0.5(x-\mu_(y^{i}))^{T}\Sigma^{-1}(x-\mu_(y^{i})))) + \nabla_\mu_y \sum_{i=1}^\nexp log(\phi^{y^{i}}(1-\phi)^{y^{i}})
+ \end{equation*}
+ \begin{equation*}
+     0 = \nabla_\mu_y\sum_{i=1}^\nexp (-0.5(x-\mu_y)^{T}\Sigma^{-1}(x-\mu_y)) + 0
+ \end{equation*}
+\begin{equation*}
+    -0.5 *\nabla_\mu_y\sum_{i=1}^\nexp (x^{T}\Sigma^{-1}x-x^{T}\Sigma^{-1}\mu_y - \mu_y^{T}\Sigma^{-1}x + \mu_y^{T}\Sigma^{-1}\mu_y) = 
+\end{equation*}
+\begin{equation*}
+    -0.5*\nabla_\mu_y\sum_{i=1}^\nexp(x^{T}\Sigma^{-1}x- 2\mu_y^{T}\Sigma^{-1}x + \mu_y^{T}\Sigma^{-1}\mu_y) = 
+\end{equation*}
+ (Since $\mu_y^{T}\Sigma^{-1}x$ is 1x1 matrix, it is equivalent with its transpose $x^{T}\Sigma^{-1}\mu_y$.)
+ \begin{equation*}
+     \sum_{i=1}^\nexp(\Sigma^{-1}x - \Sigma^{-1}\mu_y) = 0
+     \Rightarrow \Sigma \sum_{i=1}^\nexp(\Sigma^{-1}x - \Sigma^{-1}\mu_y) = \sum_{i=1}^\nexp(x - \mu_y) = 0
+ \end{equation*}
+ Thus,
+ \begin{equation*}
+     \sum_{i=1}^\nexp x = \sum_{i=1}^\nexp \mu_y
+ \end{equation*}
+ 
+ Since $\mu_y$ has different values depending on the y values, we will use indicator function in order to erase the other values which are not relevant to current y value. 
+ \begin{equation*}
+     \sum_{i=1}^\nexp 1\{y^{(i)} = k\} \\x^{i} = \sum_{i=1}^\nexp 1\{y^{(i)} = k\} \\\mu_y 
+ \end{equation*}
+ (k = 0 or 1)
+ 
+ 
+ So, $\mu_y$ is...
+ \begin{equation*}
+     \frac{\sum_{i=1}^\nexp 1\{y^{(i)} = k\} \\x^{i}}{\sum_{i=1}^\nexp 1\{y^{(i)} = k\} \\} 
+ \end{equation*}
+ (k = 0 or 1)
+ 
+ From the equation above we can know...
+ \begin{equation*}
+     \mu_0 = \frac{\sum_{i=1}^\nexp 1\{y^{(i)} = 0\} \\x^{i}}{\sum_{i=1}^\nexp 1\{y^{(i)} = 0\} \\} 
+ \end{equation*}
+ \begin{equation*}
+     \mu_1 = \frac{\sum_{i=1}^\nexp 1\{y^{(i)} = 1\} \\x^{i}}{\sum_{i=1}^\nexp 1\{y^{(i)} = 1\} \\} 
+ \end{equation*}
+ 
+ Finally, in order to find the maximum likelihood estimate of $\Sigma$, we need to calculate $\nabla_\Sigma l = 0$
+ 
+ Since $p(y)$ is not consisted of $\Sigma$, we can know that $\nabla_\Sigma\sum_{i=1}^\nexp p(y^{i}) = 0$.
+ So, 
+ \begin{equation*}
+     \nabla_\Sigma l = \nabla_\Sigma\sum_{i=1}^\nexp(-\frac{d*log(2\pi)}{2} -\frac{log(|\Sigma|)}{2} -\frac{(x-\mu_y)^{T}\Sigma^{-1}(x-\mu_y)}{2}) +0 = 0
+ \end{equation*}
+ \begin{equation*}
+     = -\frac{1}{2}\sum_{i=1}^\nexp(0 + (\Sigma^{-1})^{T} - (\Sigma^{-T}(x-\mu_y)(x-\mu_y)^{T}\Sigma^{-T}))
+     = -\frac{1}{2}\sum_{i=1}^\nexp(0 + (\Sigma^{-1}) - (\Sigma^{-1}(x-\mu_y)(x-\mu_y)^{T}\Sigma^{-1})) = 0
+ \end{equation*}
+ 
+ 
+ \begin{equation*}
+     \Rightarrow -\frac{1}{2}\Sigma(\sum_{i=1}^\nexp(0 + (\Sigma^{-1}) - (\Sigma^{-1}(x-\mu_y)(x-\mu_y)^{T}\Sigma^{-1})))\Sigma = 0
+ \end{equation*}
+ 
+ So, we get...
+ \begin{equation*}
+     \sum_{i=1}^\nexp (\Sigma - (x-\mu_y)(x-\mu_y)^{T}) = 0 \Rightarrow
+     n\Sigma -  \sum_{i=1}^\nexp ((x-\mu_y)(x-\mu_y)^{T}) = 0
+ \end{equation*}
+ Thus, 
+ \begin{equation*}
+     \Sigma = \frac{1}{n}\sum_{i=1}^\nexp ((x-\mu_y)(x-\mu_y)^{T})
+ \end{equation*}
+\end{answer}

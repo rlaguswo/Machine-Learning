@@ -1,0 +1,15 @@
+\begin{answer}
+\def\xsi{x^{(i)}}
+\begin{align*}
+    \ell(W) &= \nexp\log|W| + \sum_{i=1}^\nexp\sum_{j=1}^\di \log \frac{1}{\sqrt{2\pi}}\exp\left(-\frac{1}{2}(w_j^T\xsi)^2\right) \\
+    &= \nexp\log|W| +C -\frac{1}{2}\sum_{i=1}^\nexp\sum_{j=1}^\di (w_j^T\xsi)^2 \\
+    \Rightarrow \nabla_W \ell(W) &= \nexp W^{-T} -\frac{1}{2}\sum_{i=1}^\nexp \begin{bmatrix}\nabla_{w_1^T}  (w_1^T\xsi)^2 \\\nabla_{w_2^T} (w_2^T\xsi)^2 \\ \ldots \\\ \nabla_{w_{\di}^T} (w_{\di}^T\xsi)^2 \end{bmatrix}\\
+    &= \nexp W^{-T} -\frac{1}{2}\sum_{i=1}^\nexp \begin{bmatrix} 2 (w_1^T\xsi) x^{(i)T} \\ 2 (w_2^T\xsi) x^{(i)T} \\ \ldots \\\ 2 (w_{\di}^T\xsi) x^{(i)T} \end{bmatrix}\\
+    &= \nexp W^{-T} - \sum_{i=1}^\nexp \begin{bmatrix}  w_1^T(\xsi x^{(i)T}) \\  w_2^T(\xsi x^{(i)T}) \\ \ldots \\\  w_{\di}^T(\xsi x^{(i)T}) \end{bmatrix}\\
+    &= \nexp W^{-T} - W \sum_{i=1}^\nexp \xsi x^{(i)T} \\
+    &= \nexp W^{-T} - WX^TX = 0 \\
+    \Rightarrow \nexp W^{-1}W^{-T} &= X^TX \\
+    &\Rightarrow \boxed{W^TW = \left(\frac{1}{\nexp}X^TX\right)^{-1}}
+\end{align*}
+This implies that if some $W^*$ is a valid solution to the above relation, then any $W' = W^*U$ where $U$ is some full rank unitary matrix is also a valid solution. This ambiguity is essentially due to the quadratic form taken by the log-likelihood of the Gaussian.
+\end{answer}

@@ -1,0 +1,18 @@
+\begin{answer}
+\begin{align*}
+\ell_\text{semi-sup}(\theta^{(t+1)})
+&= \alpha \ell_\text{sup}(\theta^{(t+1)}) + \ell_\text{unsup}(\theta^{(t+1)})
+    &\text{Definition} \\
+&\ge \alpha \ell_\text{sup}(\theta^{(t+1)}) + \sum_{i=1}^\nexp\sum_{\zsi}Q_i^{(t)}(\zsi)\log\frac{p(\xsi,\zsi;\theta^{(t+1)})}{Q_i^{(t)}(\zsi)}
+    &\text{Jensen's inequality} \\
+&\ge \alpha \ell_\text{sup}(\theta^{(t)}) + \sum_{i=1}^\nexp\sum_{\zsi}Q_i^{(t)}(\zsi)\log\frac{p(\xsi,\zsi;\theta^{(t)})}{Q_i^{(t)}(\zsi)}
+    &\text{M-step} \\
+&= \alpha \ell_\text{sup}(\theta^{(t)}) + \sum_{i=1}^\nexp\sum_{\zsi}Q_i^{(t)}(\zsi)\log\frac{p(\zsi|\xsi;\theta^{(t)})p(\xsi;\theta^{(t)})}{Q_i^{(t)}(\zsi)}
+	&\text{Conditional probability} \\
+&= \alpha \ell_\text{sup}(\theta^{(t)}) + \sum_{i=1}^\nexp\sum_{\zsi}Q_i^{(t)}(\zsi)\log p(\xsi;\theta^{(t)})
+	&{Q^{(t)}(z) := p(z|x;\theta^{(t)})} \\
+&= \alpha \ell_\text{sup}(\theta^{(t)}) + \ell_\text{unsup}(\theta^{(t)})
+    &\sum_{\zsi}Q_i^{(t)}(\zsi)=1\\
+&= \ell_\text{semi-sup}(\theta^{(t)})
+\end{align*}
+\end{answer}

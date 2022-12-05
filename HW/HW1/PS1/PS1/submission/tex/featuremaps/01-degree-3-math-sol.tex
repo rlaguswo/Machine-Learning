@@ -1,0 +1,18 @@
+\begin{answer}
+1) The objective function $J(\theta)$
+\begin{equation*}
+    J(\theta) = \frac{1}{2}\sum_{i=1}^\nexp (h_\theta(x^{i}) -y{i})^{2} =   \frac{1}{2}\sum_{i=1}^\nexp (\theta^{T}x^{i} -y{i})^{2}
+    \end{equation*}
+2)The update rule of the batch gradient decent algorithm
+\begin{equation*}
+    \nabla_\theta J(\theta) = \frac{d}{d\theta}\frac{1}{2}(\theta^{T}x-y)^{2} = (\theta^{T}x-y)*x_j
+\end{equation*}
+The update rule is...
+\begin{equation*}
+    \theta^{i+1} = \theta^{i} - \alpha \nabla_\theta J(\theta) = \theta^{i} - \alpha (\theta^{T}x-y)*x_j
+\end{equation*}
+Therefore,
+\begin{equation*}
+    \theta^{i+1} = \theta^{i} - \alpha (\theta^{T}x-y)*x_j 
+\end{equation*}
+\end{answer}

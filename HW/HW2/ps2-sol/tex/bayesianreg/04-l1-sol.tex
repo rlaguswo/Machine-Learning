@@ -1,0 +1,22 @@
+\begin{answer}
+
+As before, we have
+\begin{align*}
+\vec{y} &= X\theta + \vec{\epsilon},
+    \quad \vec{\epsilon} \sim \mathcal{N}(0, \sigma^2I),
+    \quad \theta \in \Re^{\di} \\
+\Rightarrow \vec{y} &\sim \mathcal{N}(X\theta, \sigma^2I).
+\end{align*}
+
+\begin{align*}
+\theta_\text{MAP} &= \arg\min_\theta - \log p(y|x,\theta) - \log p (\theta) \\
+&= \arg\min_\theta -\log \left(\frac{1}{\sqrt{(2\pi)^{\di} |\sigma^2I|}}\exp\left[-\frac{1}{2} (\vec{y} - X\theta)^T (\sigma^2 I)^{-1} (\vec{y} - X\theta) \right]\right) - \log \left(\prod_{i=1}^{\di} p(\theta_i) \right) \\
+&= \arg\min_\theta -C + \frac{1}{2 \sigma^2}(\vec{y} - X\theta)^T (\vec{y} - X\theta) - \log \left(\frac{1}{(2b)^{\di}} \exp\left[- \frac{||\theta||_1}{b} \right]\right) \\
+&= \arg\min_\theta \frac{1}{2 \sigma^2} ||X\theta - \vec{y}||_2^2 + D + \frac{1}{b} ||\theta||_1 \\
+&= \arg\min_\theta ||X\theta - \vec{y}||_2^2 + \frac{2 \sigma^2}{b} ||\theta||_1 \\
+&= \arg\min_\theta ||X\theta - \vec{y}||_2^2 + \gamma ||\theta||_1 \\
+&= \arg\min_\theta J(\theta)
+\end{align*}
+where $\gamma = \frac{2 \sigma^2}{b}$.
+
+\end{answer}

@@ -1,0 +1,30 @@
+\begin{answer}
+
+First, let's expand the expression $\mathrm{CE}(y^{(i)}, \hat{y}^{(i)})$.
+  \begin{align*}
+\mathrm{CE}(y^{(i)},\hat{y}^{(i)}) = & - \sum_{k=1}^K y^{(i)}_k \log \hat{y}^{(i)}_k =  - y^{(i)}_l \log \hat{y}^{(i)}_l = - \log \hat{y}^{(i)}_l \\
+& =  - \log (\mathrm{softmax}(z^{(i)}) _l)  \\
+& =  - \log (\mathrm{softmax}(z^{(i)}_l))  \\
+& =  - \log \left[ \frac{\exp(z^{(i)}_l)}{\sum_{k=1}^K \exp(z_k^{(i)})} \right]  \\
+& =  - z^{(i)}_l + \log \sum_{k=1}^K \exp(z^{(i)}_k)
+  \end{align*}
+
+  To determine the gradient, first let's consider $\displaystyle \frac{\partial \mathrm{CE}(y^{(i)},\hat{y}^{(i)}) }{ \partial z^{(i)}_l}$:
+  \begin{align*}
+  \frac{\partial \mathrm{CE}(y^{(i)},\hat{y}^{(i)}) }{ \partial z^{(i)}_l} &=  \frac{\partial  }{ \partial z^{(i)}_l}(-z^{(i)}_l + \log (\sum_{k=1}^K \exp(z^{(i)}_k))) = -1 + \frac{\exp(z^{(i)}_l)}{\sum_{k=1}^K \exp(z^{(i)}_k)} \\
+  &= -1 + \mathrm{softmax}(z^{(i)})_l \\
+  &= -y^{(i)}_l + \hat{y}^{(i)}_l.
+  \end{align*}
+
+  Now let's consider $\displaystyle \frac{\partial \mathrm{CE}(y^{(i)},\hat{y}^{(i)}) }{ \partial z^{[2]}_j}$ for $j \neq l$:
+  \begin{align*}
+  \frac{\partial \mathrm{CE}(y^{(i)},\hat{y}^{(i)}) }{ \partial z^{(i)}_j} &=  \frac{\partial  }{ \partial z^{(i)}_j}(- z^{(i)}_l + \log (\sum_{k=1}^K \exp(z^{(i)}_k))) = \frac{\exp(z^{(i)}_j)}{\sum_{k=1}^K \exp(z^{(i)}_k)} \\
+  &= \mathrm{softmax}(z^{(i)})_j \\
+  &= -y^{(i)}_j + \hat{y}^{(i)}_j
+  \end{align*}
+
+  Combining the two cases, we have $ \nabla_{z^{(i)}} \mathrm{CE}(y^{(i)}, \hat{y}^{(i)}) = \hat{y}^{(i)} - y^{(i)} $ as desired.
+
+\end{answer}
+   
+  

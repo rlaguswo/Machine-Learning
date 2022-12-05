@@ -1,0 +1,23 @@
+\begin{answer}
+First note we have $f_u(\xsi) = u^T\xsi u$ (why?)\footnote{
+  To see why, observe that
+  \begin{align*}
+    f_u(x) &= u \cdot \left(\arg \min_{\alpha} ||x - \alpha u||^2\right)
+    = u \cdot \left(\arg \min_{\alpha} (x^T x - 2 \alpha x^T u + \alpha^2 u^T u)\right)
+    = u \cdot \left(\frac{2x^T u}{2 u^T u}\right) = u x^T u
+  \end{align*}
+  where the third equality follows from the fact that the minimum of a convex quadratic function
+  $ax^2 + bx + c$ is given by $x = -\frac{b}{2a}$, and the last equality follows from the fact that
+  $u$ is a unit-length vector.
+}. So we have to solve the following problem:
+\begin{align*}
+\arg\min_{u:u^Tu=1} \sum_{i=1}^m \|\xsi-f_u(\xsi)\|_2^2
+&= \arg\min_{u:u^Tu=1} \sum_{i=1}^m \|\xsi-u^T\xsi u\|_2^2 \\
+&= \arg\min_{u:u^Tu=1} \sum_{i=1}^m \left( \xsi-u^T\xsi u)^T(\xsi-u^T\xsi u \right) \\
+&= \arg\min_{u:u^Tu=1} \sum_{i=1}^m \left( {\xsi}^T\xsi-2(u^T\xsi)^2+u^Tu(u^T\xsi)^2 \right) \\
+&= \arg\min_{u:u^Tu=1} \sum_{i=1}^m \left( {\xsi}^T\xsi-2(u^T\xsi)^2+(u^T\xsi)^2 \right) \\
+&= \arg\min_{u:u^Tu=1} \sum_{i=1}^m -(u^T\xsi)^2 \\
+&= \arg\max_{u:u^Tu=1} u^T \left(\sum_{i=1}^m \xsi{\xsi}^T \right) u
+\end{align*}
+And the last line corresponds to the optimization problem that defines the first principal component.
+\end{answer}

@@ -1,0 +1,11 @@
+\begin{answer}
+\begin{align*}
+    \E_{y\sim p(y;\theta)}[\nabla_{\theta'} \log p(y;\theta')|_{\theta'=\theta}]&=\int_{-\infty}^{\infty}p(y;\theta)(\nabla_{\theta'} \log(p(y;\theta')))|_{\theta'=\theta}dy\\
+    &=\int_{-\infty}^{\infty}p(y;\theta)\dfrac{\nabla_{\theta'} p(y;\theta)|_{\theta'=\theta}}{p(y;\theta')|_{\theta'=\theta}}dy\\
+    &=\int_{-\infty}^{\infty}\nabla_{\theta'} p(y;\theta')|_{\theta'=\theta}dy\\
+    &=\nabla_{\theta'} \int_{-\infty}^{\infty} p(y;\theta')dy|_{\theta'=\theta}\\
+    &=\nabla_{\theta'} 1|_{\theta'=\theta}\\
+    &=0
+\end{align*}
+We know that since $p(y;\theta')$ is a density function, $\int_{-\infty}^{\infty} p(y;\theta')dy=1$\\
+\end{answer}

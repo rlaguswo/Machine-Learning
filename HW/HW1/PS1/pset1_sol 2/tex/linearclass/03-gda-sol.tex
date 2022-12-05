@@ -1,0 +1,58 @@
+\begin{answer}
+	For shorthand, we let $\mc{H} = \{\phi, \Sigma, \mu_{0}, \mu_1\}$ denote
+	the parameters for the problem.
+	Since the given formulae are conditioned on $y$, use Bayes rule to get:
+	\begin{align*}
+		p(y =1| x ; \phi, & \Sigma, \mu_{0}, \mu_1)\\
+		& = \frac {p(x|y=1; \phi, \Sigma, \mu_{0}, \mu_1) p(y=1; \phi, \Sigma,
+			\mu_{0}, \mu_1)} {p(x; \phi, \Sigma, \mu_{0}, \mu_1)}
+			\notag\\
+		& = \frac {p(x|y=1; \mc{H}) p(y=1; \mc{H})}
+			{p(x|y=1; \mc{H}) p(y=1; \mc{H}) + p(x|y={0}; \mc{H}) p(y={0};
+			\mc{H})}\notag\\
+		&= \frac{\exp\left(-\frac{1}{2} (x-\mu_1)^T \Sigma^{-1} (x-\mu_1) \right)
+			\phi}
+			{\exp\left(-\frac{1}{2} (x-\mu_1)^T \Sigma^{-1} (x-\mu_1) \right)
+			\phi + \exp\left(-\frac{1}{2} (x-\mu_{0})^T \Sigma^{-1} (x-\mu_{0}) \right)
+			(1-\phi)}\notag\\
+		&= \frac{1} {1+ \frac{1-\phi}{\phi}
+			\exp\left(-\frac{1}{2} (x-\mu_{0})^T \Sigma^{-1} (x-\mu_{0}) + \frac{1}{2}
+			(x-\mu_1)^T \Sigma^{-1} (x-\mu_1)\right)}\notag\\
+		&= \frac{1} {1 +\exp\left(\log(\frac{1-\phi}{\phi}) -
+			\frac{1}{2}(x-\mu_{0})^T \Sigma^{-1} (x-\mu_{0}) + \frac{1}{2}(x-\mu_1)^T
+			\Sigma^{-1} (x-\mu_1)\right)}.
+	\end{align*}
+	Now, we expand and rearrange the difference of quadratic terms
+	in the preceding expression, finding that
+	\begin{align*}
+		\lefteqn{(x-\mu_{0})^T \Sigma^{-1} (x-\mu_{0}) - (x-\mu_1)^T
+		\Sigma^{-1} (x-\mu_1)} \\
+		& =  x^T \Sigma^{-1} x - \mu_{0}^T\Sigma^{-1} x -
+			x^T\Sigma^{-1}\mu_{0} + \mu_{0}^T \Sigma^{-1} \mu_{0} - x^T \Sigma^{-1} x +
+			\mu_1^T \Sigma^{-1} x + x^T\Sigma^{-1}\mu_1 - \mu_1^T \Sigma^{-1}
+			\mu_1 \\
+		& = - 2 \mu_{0}^T\Sigma^{-1} x
+			+ \mu_{0}^T \Sigma^{-1} \mu_{0} + 2 \mu_1^T \Sigma^{-1} x
+			- \mu_1^T \Sigma^{-1}\mu_1 \\
+		& = 2 (\mu_1 - \mu_{0})^T \Sigma^{-1} x + \mu_{0}^T \Sigma^{-1} \mu_{0}
+			- \mu_1^T \Sigma^{-1} \mu_1.
+	\end{align*}
+	Thus, we have
+	\begin{equation*}
+		p(y = 1 \mid x; \mc{H})
+		= \frac{1}{1 + \exp\left(\log \frac{1 - \phi}{\phi}
+		+ \half \mu_1^T \Sigma^{-1} \mu_1 - \half \mu_{0}^T \Sigma^{-1} \mu_{0}
+		+ (\mu_{0} - \mu_1)^T \Sigma^{-1} x \right)}.
+	\end{equation*}
+	and setting
+	\begin{equation*}
+		\theta = -\Sigma^{-1}(\mu_{0} - \mu_1)
+			~~ \mbox{and} ~~ \theta_0 = \half (\mu_{0}^T \Sigma^{-1} \mu_{0}
+			- \mu_1^T \Sigma^{-1} \mu_1) - \log \frac{1 - \phi}{\phi}
+	\end{equation*}
+	gives that
+	\begin{equation*}
+	p(y = 1 \mid x; \phi, \Sigma, \mu_{0}, \mu_1)
+	= \frac{1}{1 + \exp(-(\theta^T x + \theta_0))}.
+	\end{equation*}
+\end{answer}

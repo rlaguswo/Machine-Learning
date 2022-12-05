@@ -1,0 +1,18 @@
+\begin{answer}
+	\begin{equation*}
+	    p(y;\lambda) = \frac{e^{-\lambda}\lambda^{y}}{y!}
+	    = \frac{1}{y!}e^{-\lambda+y*log(\lambda)}
+	    =b(y)e^{\eta T(y)-A(\eta)}
+	\end{equation*}
+	
+So, we get...
+    \begin{equation*}
+        b(y) = \frac{1}{y!},
+        \eta = log(\lambda),
+        T(y) = y,
+        a(\eta) = \lambda = e^{\eta}
+    \end{equation*}
+    
+    Hence, the Poisson distribution is in the exponential family.
+    
+\end{answer}

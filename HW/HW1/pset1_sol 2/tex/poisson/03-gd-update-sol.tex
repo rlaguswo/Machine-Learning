@@ -1,0 +1,33 @@
+\begin{answer}
+The log-likelihood of an example $(x^{(i)}, y^{(i)})$ is defined as
+$\ell(\theta) = \log p(y^{(i)} | x^{(i)}; \theta)$. To derive the stochastic
+gradient ascent rule, use the results in part (a) and the standard GLM
+assumption that $\eta = \theta^Tx$.
+\begin{eqnarray*}
+	\frac{\partial \ell(\theta)}{\partial \theta_j}
+	&=& \frac{\partial \log p(y^{(i)} | x^{(i)}; \theta)}{\partial \theta_j}\\
+	&=& \frac {\partial \log \left({\frac{1}{y^{(i)}!} \exp(\eta^T y^{(i)} -
+	e^\eta)}\right)} {\partial \theta_j}\\
+	&=& \frac {\partial \log \left(\exp((\theta^Tx^{(i)})^T y^{(i)} -
+	e^{\theta^Tx^{(i)}})\right)} {\partial \theta_j}
+	+ \frac {\partial \log \left({\frac{1}{y^{(i)}!}}\right)} {\partial
+\theta_j}\\
+	&=& \frac {\partial \left((\theta^Tx^{(i)})^T y^{(i)}
+		- e^{\theta^Tx^{(i)}}\right)} {\partial \theta_j}\\
+	&=& \frac {\partial \left((\sum_k \theta_k x^{(i)}_k) y^{(i)}
+		- e^{\sum_k\theta_k x^{(i)}_k}\right)} {\partial \theta_j}\\
+	&=& x^{(i)}_jy^{(i)} - e^{\sum_k \theta_k x^{(i)}_k} x^{(i)}_j\\
+	&=& (y^{(i)} - e^{\theta^T x^{(i)}}) x^{(i)}_j.
+\end{eqnarray*}
+
+Thus the stochastic gradient ascent update rule should be:
+%
+\begin{equation*}
+\theta_j := \theta_j + \alpha \frac{\partial \ell(\theta)}{\partial \theta_j},
+\end{equation*}
+%
+which reduces here to:
+\begin{equation*}
+	\theta_j := \theta_j + \alpha (y^{(i)} - e^{\theta^T x^{(i)}}) x^{(i)}_j.
+\end{equation*}
+\end{answer}
